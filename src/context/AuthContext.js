@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
       // If token exists, try to verify it and retrieve the user data
       if (token) {
         try {
-          const response = await axios.get('http://localhost:5000/api/auth/me', {
+          const response = await axios.get('https://magnetbackend.onrender.com/api/auth/me', {
             headers: { Authorization: `Bearer ${token}` },
           });
           console.log("User data from server:", response.data);
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
   // Login function
   const login = async (email, password) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const response = await axios.post('https://magnetbackend.onrender.com/api/auth/login', { email, password });
       const { token, user } = response.data;
 
       console.log("Login successful, received token:", token);
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
   // Register function
   const register = async (email, password) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', { email, password });
+      const response = await axios.post('https://magnetbackend.onrender.com/api/auth/register', { email, password });
       const { token, user } = response.data;
 
       console.log("Registration successful, received token:", token);

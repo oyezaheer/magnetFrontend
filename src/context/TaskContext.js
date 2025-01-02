@@ -16,7 +16,7 @@ export const TaskProvider = ({ children }) => {
         throw new Error("No token found. Please login.");
       }
       
-      const response = await axios.get('http://localhost:5000/api/tasks', {
+      const response = await axios.get('https://magnetbackend.onrender.com/api/tasks', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -39,7 +39,7 @@ export const TaskProvider = ({ children }) => {
       console.log("Task Data:", taskData); // Log the data being sent
 
       const response = await axios.post(
-        "http://localhost:5000/api/tasks",
+        "https://magnetbackend.onrender.com/api/tasks",
         taskData,
         {
           headers: {

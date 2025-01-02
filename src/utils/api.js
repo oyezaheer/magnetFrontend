@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom'; // If you are using React Router for navigation
 
 // Base URL for API calls
-const API_BASE_URL =  'http://localhost:5000/api';
+const API_BASE_URL =  'https://magnetbackend.onrender.com/api';
 
 // Create an axios instance
 const api = axios.create({

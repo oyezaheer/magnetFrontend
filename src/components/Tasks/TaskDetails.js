@@ -26,7 +26,7 @@ const TaskDetails = () => {
           throw new Error("No authentication token found");
         }
 
-        const response = await axios.get(`http://localhost:5000/api/tasks/${id}`, {
+        const response = await axios.get(`https://magnetbackend.onrender.com/api/tasks/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
