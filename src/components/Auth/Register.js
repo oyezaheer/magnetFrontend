@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import './Login.css'; // Reuse the login CSS
+import './Login.css';
 
 const Register = () => {
-  const [username, setName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { register } = useAuth();
@@ -17,13 +16,8 @@ const Register = () => {
     setError('');
 
     // Validation
-    if ( !email || !password || !confirmPassword) {
+    if (!name || !email || !password) {
       setError('Please fill in all fields');
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
       return;
     }
 
@@ -32,11 +26,11 @@ const Register = () => {
       return;
     }
 
-    // Make sure the register function passes the username as 'name'
-    const result = await register( email, password); // Ensure username (name) is included
+    // Pass name to the register function
+    const result = await register(name, email, password);
     
     if (result.success) {
-      navigate('/'); // Redirect to dashboard
+      navigate('/');
     } else {
       setError(result.message);
     }
@@ -52,8 +46,8 @@ const Register = () => {
           <label>Full Name</label>
           <input
             type="text"
-            value={username}
-            onChange={(e) => setName(e.target.value)} // Ensure the username (name) is collected here
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
             placeholder="Enter your full name"
           />
@@ -78,18 +72,6 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
             placeholder="Create a password"
-            minLength="6"
-          />
-        </div>
-        
-        <div className="form-group">
-          <label>Confirm Password</label>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-            placeholder="Confirm your password"
             minLength="6"
           />
         </div>
